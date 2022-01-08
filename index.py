@@ -80,8 +80,23 @@ def addRandomness(n, randomn_factor_size=None):
 
 def moveToWithRandomness(x,y,t):
     pyautogui.moveTo(addRandomness(x,10),addRandomness(y,10),t+random()/2)
+    
+   
+  
+  
+  
+def printSreen():
+    with mss.mss() as sct:
+        # The screen part to capture
+        monitor = {"top": 160, "left": 160, "width": 1000, "height": 135}
+
+        # Grab the data
+        #sct_img = np.array(sct.grab(monitor))
+        sct_img = np.array(sct.grab(sct.monitors[0]))
+        return sct_img[:,:,:3]
 
 
+      
 def remove_suffix(input_string, suffix):
     """Returns the input_string without the suffix"""
 
