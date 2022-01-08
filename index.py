@@ -51,6 +51,13 @@ cat = """
 
 
 
+global off_x
+off_x = 0
+with mss.mss() as sct:
+    off_x = 0
+    if(len(sct.monitors) == 3):
+        monitor = sct.monitors[2]
+        off_x = -monitor['width']
 
 
 
@@ -170,12 +177,12 @@ def clickBtn(img, timeout=3, threshold = ct['default']):
 
 def printSreen():
     with mss.mss() as sct:
-        monitor = sct.monitors[0]
-        sct_img = np.array(sct.grab(monitor))
         # The screen part to capture
-        # monitor = {"top": 160, "left": 160, "width": 1000, "height": 135}
+        monitor = {"top": 160, "left": 160, "width": 1000, "height": 135}
 
         # Grab the data
+        #sct_img = np.array(sct.grab(monitor))
+        sct_img = np.array(sct.grab(sct.monitors[0]))
         return sct_img[:,:,:3]
 
 def positions(target, threshold=ct['default'],img = None):
